@@ -34,7 +34,7 @@ function main()
         requestAnimationFrame( loop );
         cube.rotation.x += 0.001;
         cube.rotation.y += 0.001;
-	light.position.set(1,1,1);
+	light.position.set( 1, 1, 1);
 	scene.add(light);
         renderer.render( scene, camera );
 	
