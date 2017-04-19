@@ -16,25 +16,28 @@ function main()
     var renderer = new THREE.WebGLRenderer();
     renderer.setSize( width, height );
     document.body.appendChild( renderer.domElement );
-
+    
+    var lihgt = new THREE.PointLight(0xffffff);
+    
     var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+    // var material = new THREE.MeshBasicMaterial( { color: 0xffffff } );
+    var material = new THREE.MeshLambertMaterial({color:0xffffff });
     var cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
 
-    var lihgt = new THREE.PointLight(0xffffff);
-    var material = new THREE.MeshLambertMaterial({
-	color:0xffffff
-    });
+   	 
     loop();
 
     function loop()
     {
-	light.posiition.set(1,1,1);
-	scene.add(light);
+
         requestAnimationFrame( loop );
         cube.rotation.x += 0.001;
         cube.rotation.y += 0.001;
+	light.position.set(1,1,1);
+	scene.add(light);
         renderer.render( scene, camera );
+	
+
     }
 }
