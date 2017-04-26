@@ -69,7 +69,7 @@ function main()
     var id10 = faces[10];
     var id11 = faces[11];
 
-    var f = new THREE.Face3(id0[0],id0[1],id0[2]);
+    var f0 = new THREE.Face3(id0[0],id0[1],id0[2]);
     var f1 = new THREE.Face3(id1[0],id1[1],id1[2]);
     var f2 = new THREE.Face3(id2[0],id2[1],id2[2]);
     var f3 = new THREE.Face3(id3[0],id3[1],id3[2]);
@@ -123,11 +123,12 @@ function main()
     geometry.face[11].color = new THREE.Color(0,0,1);
 
 
-    var material = new THREE.MeshBasicMaterial();
+  
     material.vertexColors = THREE.VertexColors;
 
     
-    
+    var light = new THREE.DirectionalLight(0xffffff);
+    scene.add(light);
     
     var cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
