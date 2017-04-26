@@ -119,8 +119,7 @@ function main(){
     geometry.faces[11].color = new THREE.Color(1,0,0.5);
 
     material.vertexColors = THREE.VertexColors;
-    geometry.computeFaceNormals();
-    
+   
 
    
     var light = new THREE.DirectionalLight(0xffffff);

@@ -119,8 +119,7 @@ function main(){
     geometry.faces[11].color = new THREE.Color(1,0,0.5);
 
     material.vertexColors = THREE.VertexColors;
-    geometry.computeFaceNormals();
-    
+   
 
    
     var light = new THREE.DirectionalLight(0xffffff);
@@ -129,7 +128,64 @@ function main(){
     var cube = new THREE.Mesh( geometry, material );
     scene.add(cube);
    // renderer.render( scene, camera );
-   loop();
+    loop();
+var x = 0;
+    window.onmousedown = function (ev){
+	if(ev.target == renderer.domElement){
+	    var rect = ev.target.getBoundingClientRect();
+	    var mouse = {x:0,y:0};
+
+	    mouse.x =  ev.clientX - rect.left;
+	    mouse.y =  ev.clientY - rect.top;
+
+	    console.log(x);
+
+	    mouse.x = (mouse.x /width)*2-1;
+	    mouse.y = -(mouse.y /height)*2+1;
+
+	    var raycaster = new THREE.Raycaster();
+	    
+	    raycaster.setFromCamera(mouse , camera);
+
+	    var intersects = raycaster.intersectObject(cube);
+	    if(intersects.length > 0){
+		if(x==0)
+		    intersects[0].face.color.setRGB(1,0,0);
+		else if(x==1)
+		    intersects[0].face.color.setRGB(1,1,0);
+		else if(x==2)
+		    intersects[0].face.color.setRGB(1,0,1);
+		else if(x==3)
+		    intersects[0].face.color.setRGB(0,1,1);
+		else if(x==4)
+		    intersects[0].face.color.setRGB(1,0.5,0.5);
+		else if(x==5)
+		    intersects[0].face.color.setRGB(0,1,0);
+		else if(x==6)
+		    intersects[0].face.color.setRGB(0,0,1);
+		else if(x==7)
+		    intersects[0].face.color.setRGB(0,1,1);
+		else if(x==8)
+		    intersects[0].face.color.setRGB(0.5,0,1);
+		else if(x==9)
+		    intersects[0].face.color.setRGB(0.5,1,1);
+		else if(x==10)
+		    intersects[0].face.color.setRGB(0,1,0.5);
+		else if(x==11)
+		    intersects[0].face.color.setRGB(1,0,0.5);
+		
+		intersects[0].object.geometry.colorsNeedUpdate = true;
+		x++;
+		if(x==12)
+		    x=0;
+		
+	    }
+	}
+
+    };
+
+
+    
  function loop()
     {
         requestAnimationFrame( loop );
