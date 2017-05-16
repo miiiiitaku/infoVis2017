@@ -135,11 +135,14 @@ var x = 0;
 	    var rect = ev.target.getBoundingClientRect();
 	    var mouse = {x:0,y:0};
 
+	    //world
 	    mouse.x =  ev.clientX - rect.left;
 	    mouse.y =  ev.clientY - rect.top;
 
 	    console.log(x);
 
+
+	    //ndc
 	    mouse.x = (mouse.x /width)*2-1;
 	    mouse.y = -(mouse.y /height)*2+1;
 
